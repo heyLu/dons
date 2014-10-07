@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"github.com/miekg/dns"
 	"net"
@@ -33,7 +34,7 @@ func SimpleHandler(w dns.ResponseWriter, req *dns.Msg) {
 	name := split[0]
 	ip, err := GetContainerIp(name)
 	if err != nil {
-		fmt.Printf("error getting ip of container: %s\n", err)
+		fmt.Print(err)
 		w.WriteMsg(m)
 		return
 	}
@@ -56,9 +57,9 @@ func SimpleHandler(w dns.ResponseWriter, req *dns.Msg) {
 
 func GetContainerIp(name string) (string, error) {
 	cmd := exec.Command("docker", "inspect", "-f", "{{ .NetworkSettings.IPAddress }}", name)
-	out, err := cmd.Output()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
-		return "", err
+		return "", errors.New(string(out))
 	}
 	return string(out), nil
 }
