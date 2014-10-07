@@ -20,7 +20,11 @@ func main() {
 	server := &dns.Server{Addr: addr, Net: "udp"}
 	fmt.Printf("running server on %s\n", addr)
 
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
 
 func SimpleHandler(w dns.ResponseWriter, req *dns.Msg) {
