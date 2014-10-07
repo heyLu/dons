@@ -7,7 +7,7 @@ Resolve `<container-id>.docker.local` to the ip of that container via DNS.
 	$ ./dons
 	running server on 127.0.0.1:8053
 	# somewhere else ...
-	$ dig +nocmd @127.0.0.1 -p 8053 53a98c2ac.docker.local
+	$ dig @127.0.0.1 -p 8053 53a98c2ac.docker.local
 	[...]
 	;; ANSWER SECTION:
 	53a98c2ac.docker.local. 0       IN      A       172.17.0.11
