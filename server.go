@@ -5,15 +5,20 @@ import (
 	"fmt"
 	"github.com/miekg/dns"
 	"net"
+	"os"
 	"os/exec"
 	"strings"
 )
 
 func main() {
+	addr := "127.0.0.1:8053"
+	if len(os.Args) > 1 {
+		addr = os.Args[1]
+	}
 	dns.HandleFunc("docker.local", SimpleHandler)
 
-	server := &dns.Server{Addr: ":8053", Net: "udp"}
-	fmt.Printf("running server on %s\n", "127.0.0.1:8053")
+	server := &dns.Server{Addr: addr, Net: "udp"}
+	fmt.Printf("running server on %s\n", addr)
 
 	server.ListenAndServe()
 }
