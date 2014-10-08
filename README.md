@@ -33,3 +33,8 @@ it yourself using `go get . && go build`.
 
 If you want to install it permanently and have `dnsmasq` installed, run
 `sudo make install`.
+
+To make it work with NetworkManager, add `dns=dnsmasq` to your config, as
+described on [the arch wiki](https://wiki.archlinux.org/index.php/dnsmasq#NetworkManager)
+and `systemctl disable dnsmasq.service`, because NetworkManager will start
+it.
