@@ -1,0 +1,8 @@
+[Unit]
+Description=Lookup IP addresses of docker containers via DNS
+Requires=dnsmasq.service
+
+[Service]
+User=nobody
+Group=docker
+ExecStart=/usr/bin/dons 127.0.0.1:8053
