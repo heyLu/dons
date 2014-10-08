@@ -30,3 +30,6 @@ The you can run `./dons` as a regular user.
 
 use a [binary release](https://github.com/heyLu/dons/releases), or build
 it yourself using `go get . && go build`.
+
+if you want to install it permanently and have `dnsmasq` installed, run
+`sudo make install`.
